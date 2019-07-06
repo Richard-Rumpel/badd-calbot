@@ -1,0 +1,19 @@
+#!/bin/bash
+
+cd "$(dirname "$0")"
+
+source ./bin/activate
+LOG=$(python3 bot.py 2>&1)
+RET=$?
+
+if [ $RET -ne 0 ]; 
+then
+	echo "bot script failed"
+	echo "output: "
+	echo ""
+	echo $LOG
+
+	exit $RET
+else
+	date > /srv/cal/lastrun.txt
+fi

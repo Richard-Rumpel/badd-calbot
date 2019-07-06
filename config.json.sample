@@ -1,0 +1,4 @@
+{
+"url": "https://selfservice.campus-dual.de/room/json?userid= your id  &hash= your hash  &start=1543186800&end=2543273200",
+"outFile": "/foo/file"
+}
