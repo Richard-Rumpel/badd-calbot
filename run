@@ -8,10 +8,10 @@ RET=$?
 
 if [ $RET -ne 0 ]; 
 then
-	echo "bot script failed"
-	echo "output: "
-	echo ""
-	echo $LOG
+	echo "bot script failed" >&2
+	echo "output: " >&2
+	echo "" >&2
+	echo $LOG >&2
 
 	exit $RET
 else
