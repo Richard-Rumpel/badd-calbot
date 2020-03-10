@@ -13,8 +13,14 @@ debug = False
 with open('config.json', 'r') as f:
         cfg = json.load(f)
         url = cfg['url']
-        outFile = cfg['outFile']
-        outFile2 = cfg['outFile2']
+
+        outFileJSON = cfg['outFileJson']
+        
+        outFileBase = cfg['outFileBase']
+        outFileAll = cfg['outFileAll']
+
+        outFileMobAnw = cfg['outFileAnw']
+        outFileMobKom = cfg['outFileKom']
 
 try:
 
@@ -40,7 +46,10 @@ try:
 
 
 
-        cal = Calendar()
+        calAll = Calendar()
+        calBase = Calendar()
+        calKom = Calendar()
+        calAnw = Calendar()
         js = []
 
         for event in data:
@@ -54,25 +63,38 @@ try:
             des = event['instructor'] + ' ' + event['title']
             ev.description = des
 
-            cal.events.add(ev)
+            calAll.events.add(ev)
 
 
             if ("3IT-PMA" in ev.description):
                 color = "#cf2c08"
+                calAnw.events.add(ev)
             elif("3IT-MK" in ev.description):
                 color = "#08b4cf"
+                calKom.events.add(ev)
             else:
                 color = "#90cf08" 
+                calBase.events.add(ev)
 
             #js.append({'start': event['start'].for_json(),'end': event['end'].for_json(),'title': event['description']})
             js.append({'start': ev.begin.for_json(),'end': ev.end.for_json(),'title': event['title'] + ' - '  + event['room'],'backgroundColor': color })
 
         #pprint(cal)
         #pprint(cal.events)
-        with open(outFile, 'w') as f:
-            f.writelines(cal)
+        
+        with open(outFileBase, 'w') as f:
+            f.writelines(calBase)
 
-        with open(outFile2, 'w') as f:
+        with open(outFileMobKom, 'w') as f:
+            f.writelines(calKom)
+
+        with open(outFileMobAnw, 'w') as f:
+            f.writelines(calAnw)
+
+        with open(outFileAll, 'w') as f:
+            f.writelines(calAll)
+        
+        with open(outFileJSON, 'w') as f:
             f.writelines(json.dumps(js))
 
 except:

@@ -1,0 +1,11 @@
+# ba-dresden calender für it18
+
+	updated once a day
+
+	* last update url: https://www.mega-geiler-scheiss.de/cal/lastrun.txt
+	
+	* ical urls:
+		* all events: https://www.mega-geiler-scheiss.de/cal/cal.ics
+		* base without wahlpflichtmodule: https://www.mega-geiler-scheiss.de/cal/cal-base.ics
+		* Mobile Komunikation events: https://www.mega-geiler-scheiss.de/cal/cal-mobkom.ics
+		* Nibile Anwendung events: https://www.mega-geiler-scheiss.de/cal/cal-mobanw.ics

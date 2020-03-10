@@ -1,5 +1,8 @@
 {
 "url": "https://selfservice.campus-dual.de/room/json?userid= your id  &hash= your hash  &start=1543186800&end=2543273200",
-"outFile": "/foo/file",
-"outFile2": "/foo/file"
+"outFileBase": "/foo/cal-base.ics",
+"outFileAnw": "/foo/cal-mobanw.ics",
+"outFileKom": "/foo/cal-mobkom.ics",
+"outFileAll": "/foo/cal-all.ics",
+"outFileJson": "/foo/cal.json"
 }
