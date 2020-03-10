@@ -7,6 +7,9 @@ import sys
 
 from pprint import pprint
 
+debug = False
+#debug = True
+
 with open('config.json', 'r') as f:
         cfg = json.load(f)
         url = cfg['url']
@@ -14,22 +17,28 @@ with open('config.json', 'r') as f:
         outFile2 = cfg['outFile2']
 
 try:
-        req = requests.get(url,verify=False)
-        #print(req.text)
+
+        if (debug):
+            print("load cal from file ...")
+            fh = open("tmp.txt", "r")
+            data = json.load(fh)
+            #pprint(data)
+
+        else:
+            print("download cal ...")
+            req = requests.get(url,verify=False)
+            #print(req.text)
 
 
-        data = json.loads(req.text)
+            data = json.loads(req.text)
 
-        #fh = open("tmp.txt", "w")
-        #fh.write(req.text)
-        #fh.write(data.text)
-        #json.dump(data, fh)
+            #fh = open("tmp.txt", "w")
+            #fh.write(req.text)
+            #fh.write(data.text)
+            #json.dump(data, fh)
 
 
 
-        #fh = open("tmp.txt", "r")
-        #data = json.load(fh)
-        #pprint(data)
 
         cal = Calendar()
         js = []
@@ -47,8 +56,16 @@ try:
 
             cal.events.add(ev)
 
+
+            if ("3IT-PMA" in ev.description):
+                color = "#cf2c08"
+            elif("3IT-MK" in ev.description):
+                color = "#08b4cf"
+            else:
+                color = "#90cf08" 
+
             #js.append({'start': event['start'].for_json(),'end': event['end'].for_json(),'title': event['description']})
-            js.append({'start': ev.begin.for_json(),'end': ev.end.for_json(),'title': event['title'] + ' - '  + event['room'],'backgroundColor': 'red' })
+            js.append({'start': ev.begin.for_json(),'end': ev.end.for_json(),'title': event['title'] + ' - '  + event['room'],'backgroundColor': color })
 
         #pprint(cal)
         #pprint(cal.events)
