@@ -3,6 +3,8 @@
 "outFileBase": "/foo/cal-base.ics",
 "outFileAnw": "/foo/cal-mobanw.ics",
 "outFileKom": "/foo/cal-mobkom.ics",
+"outFileVsit": "/foo/cal-vsit.ics",
+"outFileEvsa": "/foo/cal-evsa.ics",
 "outFileAll": "/foo/cal-all.ics",
 "outFileJson": "/foo/cal.json"
 }

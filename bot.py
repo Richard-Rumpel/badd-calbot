@@ -1,3 +1,4 @@
+import urllib3
 import requests
 import json
 from ics import Calendar, Event
@@ -9,6 +10,13 @@ from pprint import pprint
 
 debug = False
 #debug = True
+dump = False
+dump = True
+
+
+#hope for better days on BA-Dresden :-(
+urllib3.disable_warnings()
+
 
 with open('config.json', 'r') as f:
         cfg = json.load(f)
@@ -21,6 +29,8 @@ with open('config.json', 'r') as f:
 
         outFileMobAnw = cfg['outFileAnw']
         outFileMobKom = cfg['outFileKom']
+        outFileVsit = cfg['outFileVsit']
+        outFileEvsa = cfg['outFileEvsa']
 
 try:
 
@@ -37,11 +47,12 @@ try:
 
 
             data = json.loads(req.text)
-
-            #fh = open("tmp.txt", "w")
-            #fh.write(req.text)
-            #fh.write(data.text)
-            #json.dump(data, fh)
+            
+            if (dump):
+                fh = open("tmp.txt", "w")
+                fh.write(req.text)
+                #fh.write(data.text)
+                #json.dump(data, fh)
 
 
 
@@ -50,6 +61,9 @@ try:
         calBase = Calendar()
         calKom = Calendar()
         calAnw = Calendar()
+
+        calEvs = Calendar()
+        calVsi = Calendar()
         js = []
 
         for event in data:
@@ -72,6 +86,15 @@ try:
             elif("3IT-MK" in ev.description):
                 color = "#08b4cf"
                 calKom.events.add(ev)
+
+            elif("EVSA" in ev.description):
+                color = "#cf2c08"
+                calEvs.events.add(ev)
+
+            elif("VSIT" in ev.description):
+                color = "#08b4cf"
+                calVsi.events.add(ev)
+
             else:
                 color = "#90cf08" 
                 calBase.events.add(ev)
@@ -90,6 +113,12 @@ try:
 
         with open(outFileMobAnw, 'w') as f:
             f.writelines(calAnw)
+        
+        with open(outFileEvsa, 'w') as f:
+            f.writelines(calEvs)
+
+        with open(outFileVsit, 'w') as f:
+            f.writelines(calVsi)
 
         with open(outFileAll, 'w') as f:
             f.writelines(calAll)

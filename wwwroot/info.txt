@@ -7,5 +7,11 @@
 	* ical urls:
 		* all events: https://www.mega-geiler-scheiss.de/cal/cal.ics
 		* base without wahlpflichtmodule: https://www.mega-geiler-scheiss.de/cal/cal-base.ics
+
+		## SEM 4
 		* Mobile Komunikation events: https://www.mega-geiler-scheiss.de/cal/cal-mobkom.ics
-		* Nibile Anwendung events: https://www.mega-geiler-scheiss.de/cal/cal-mobanw.ics
+		* Mobile Anwendung events: https://www.mega-geiler-scheiss.de/cal/cal-mobanw.ics
+
+		## SEM 5
+		* Entwurf von Softwarearchitekturen: https://www.mega-geiler-scheiss.de/cal/cal-evsa.ics
+		* Verteilte Systeme und Internet der Dinge: https://www.mega-geiler-scheiss.de/cal/cal-vsit.ics
