@@ -1,4 +1,3 @@
-import urllib3
 import requests
 import json
 from ics import Calendar, Event
@@ -8,15 +7,11 @@ import sys
 
 from pprint import pprint
 
+dump = False
+#dump = True
+
 debug = False
 #debug = True
-dump = False
-dump = True
-
-
-#hope for better days on BA-Dresden :-(
-urllib3.disable_warnings()
-
 
 with open('config.json', 'r') as f:
         cfg = json.load(f)
@@ -48,7 +43,7 @@ try:
 
             data = json.loads(req.text)
             
-            if (dump):
+            if(dump):
                 fh = open("tmp.txt", "w")
                 fh.write(req.text)
                 #fh.write(data.text)
@@ -87,20 +82,40 @@ try:
                 color = "#08b4cf"
                 calKom.events.add(ev)
 
+
+
             elif("EVSA" in ev.description):
-                color = "#cf2c08"
+                color = "#08b4cf"
                 calEvs.events.add(ev)
 
             elif("VSIT" in ev.description):
                 color = "#08b4cf"
                 calVsi.events.add(ev)
 
+
+
+            elif("MTIT" in ev.description):
+                color = "#cf2c08"
+                calEvs.events.add(ev)
+            elif("F.Prog." in ev.description):
+                color = "#08b4cf"
+                calVsi.events.add(ev)
+
+            elif("IT Sicherheit" in ev.description):
+                color = "#08b4cf"
+                calEvs.events.add(ev)
+            elif("VSIT" in ev.description):
+                color = "#08b4cf"
+                calVsi.events.add(ev)
+
+
+
             else:
                 color = "#90cf08" 
                 calBase.events.add(ev)
 
             #js.append({'start': event['start'].for_json(),'end': event['end'].for_json(),'title': event['description']})
-            js.append({'start': ev.begin.for_json(),'end': ev.end.for_json(),'title': event['title'] + ' - '  + event['room'],'backgroundColor': color })
+            js.append({'start': ev.begin.for_json(),'end': ev.end.for_json(),'title': ("{0} - {1} ({2})".format(event['title'],event['room'],event['instructor'])),'backgroundColor': color })
 
         #pprint(cal)
         #pprint(cal.events)
